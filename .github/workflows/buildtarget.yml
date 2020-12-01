@@ -8,27 +8,34 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
         node-version: [8.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies  
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libusb-dev libusb-1.0 libudev-dev
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install
-        run: |
-          sudo apt-get install xvfb
-          sudo npm install -g pxt
-          scripts/install.sh
-      - name: pxt ci
-        run: |
-          cd pxt-lets-steam;pxt ci
+      - run: npm install -g pxt
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }} 
+          submodules: 'recursive' 
+      - run: scripts/install.sh
+      - run: cd pxt-lets-steam;pxt ci
         env:
           CROWDIN_KEY: ${{ secrets.CROWDIN_KEY }}
           PXT_ACCESS_TOKEN: ${{ secrets.PXT_ACCESS_TOKEN }}
