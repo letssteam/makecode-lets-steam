@@ -22,10 +22,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Install dependencies  
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libusb-dev libusb-1.0 libudev-dev
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2-beta
         with:
