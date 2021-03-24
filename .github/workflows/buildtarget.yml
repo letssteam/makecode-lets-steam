@@ -4,16 +4,17 @@ on:
   push:
     branches: 
       - main
-  create:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [8.x]
-
+        node-version: [10.x]
+    container:
+      image: nedseb/arm-gcc-none-eabi:latest
+      options: --user 1001 --security-opt no-new-privileges
     steps:
       - uses: actions/cache@v2
         with:
