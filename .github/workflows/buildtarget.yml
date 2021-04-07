@@ -31,7 +31,7 @@ jobs:
         with:
           token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }} 
           submodules: 'recursive' 
-      - run: scripts/install.sh
+      - run: scripts/setup.sh
       - run: cd pxt-lets-steam;pxt ci
         env:
           PXT_FORCE_LOCAL: 1 
