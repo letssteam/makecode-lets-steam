@@ -19,7 +19,6 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
     bzip2 \
     ca-certificates \
     wget \
-    gdb-multiarch \
     openocd \
     ncurses-dev \
     zsh \
@@ -85,8 +84,7 @@ RUN cd /usr/bin                                                                 
 # This is required to get arm-none-eabi-gdb working
 RUN  cd /usr/lib/x86_64-linux-gnu && \
     ln -s libncurses.so.6.2 libncurses.so.5 && \
-    ln -s libtinfo.so.6.2 libtinfo.so.5 && \
-    ln -s /usr/bin/gdb-multiarch /usr/bin/arm-none-eabi-gdb
+    ln -s libtinfo.so.6.2 libtinfo.so.5
 
 # [Optional] Uncomment if you want to install an additional version of node using nvm
 # ARG EXTRA_NODE_VERSION=10
