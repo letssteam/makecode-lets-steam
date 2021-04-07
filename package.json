@@ -1,0 +1,21 @@
+{
+    "name": "make-code-letssteam",
+    "private": "true",
+    "description": "Let's STEAM Project's Makecode Target",
+    "version": "0.0.1",
+    "author": "letssteam",
+    "license": "MIT",
+    "scripts": {
+        "setup": "scripts/setup.sh",
+        "serve": "scripts/serve.sh",
+        "build": "scripts/build.sh",
+        "clean": "scripts/clean.sh"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/letssteam/makecode-lets-steam"
+    },
+    "bugs": {
+        "url": "https://github.com/letssteam/makecode-lets-steam/issues"
+    }
+}

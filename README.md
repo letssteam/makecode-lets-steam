@@ -6,6 +6,19 @@ This is an experimental code editor for STM32 boards.
 
 This editor is meant for STM32 micro-controllers that are friendly to breadboarding. The editor is based on [Microsoft MakeCode](https://makecode.com).
 
+## Codespaces
+
+Edit this project directly from your browser using GitHub Codespaces. If you have access to them,
+
+* open project in a new codespace
+* launch the server
+
+```
+yarn serve
+```
+
+* click on the generated URL in the terminal output and voila!
+
 ## Local Dev Server
 
 The local server lets you to run the editor and serve the documentation from your own computer.
@@ -33,13 +46,13 @@ npm install -g pxt
 
 ```sh
 cd makecode-lets-steam
-script/install.sh
+scripts/setup.sh
 ```
 
 - Run the local server :
 
 ```sh
-script/serve.sh
+scripts/serve.sh
 ```
 
 ### CODAL changes
