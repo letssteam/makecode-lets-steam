@@ -9,7 +9,8 @@
         "setup": "git submodule update --init --recursive && git pull && scripts/setup.sh",
         "serve": "scripts/serve.sh",
         "build": "scripts/build.sh",
-        "package": "scripts/package.sh",
+        "staticpackage": "scripts/package.sh",
+        "staticserve" : "http-server -c-1 built/packaged",
         "clean": "scripts/clean.sh"
     },
     "repository": {

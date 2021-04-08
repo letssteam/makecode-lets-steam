@@ -90,4 +90,4 @@ RUN  cd /usr/lib/x86_64-linux-gnu && \
 # ARG EXTRA_NODE_VERSION=10
 # RUN su node -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
 
-RUN su node -c "npm install -g pxt npm"
+RUN su node -c "npm install -g pxt npm http-server"
