@@ -10,7 +10,7 @@
         "serve": "scripts/serve.sh",
         "build": "scripts/build.sh",
         "staticpackage": "scripts/package.sh",
-        "staticserve" : "http-server -c-1 built/packaged",
+        "staticserve" : "http-server -c-1 pxt-lets-steam/built/packaged",
         "clean": "scripts/clean.sh"
     },
     "repository": {
