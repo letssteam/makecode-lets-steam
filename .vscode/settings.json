@@ -75,5 +75,7 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "editor.formatOnSave": true,
+    "files.autoSave": "onFocusChange"
 }
