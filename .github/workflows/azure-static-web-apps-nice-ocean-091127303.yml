@@ -1,0 +1,78 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    strategy:
+      matrix:
+        node-version: [14.x]
+    container:
+      image: nedseb/arm-gcc-none-eabi:latest
+      options: --user 1001 --security-opt no-new-privileges
+    steps:
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: npm install -g pxt
+
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ${{ github.workspace }}/pxt-lets-steam/libs/blocksprj/built
+            ${{ github.workspace }}/pxt-lets-steam/libs/stm32-discovery-DISCO_L475VG_IOT/built
+            ${{ github.workspace }}/pxt-lets-steam/libs/stm32-nucleo64-NUCLEO_F4x1RE/built
+            ${{ github.workspace }}/pxt-lets-steam/libs/stm32-nucleo64-PNUCLEO_WB55RG/built
+          key: ${{ runner.os }}-codal-${{ hashFiles('**/target-locked.json') }}
+
+      - run: scripts/setup.sh && scripts/build.sh && scripts/package.sh
+
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v0.0.1-preview
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_OCEAN_091127303 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "/pxt-lets-steam" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "built/packaged/" # Built app content directory - optional
+          app_build_command: "ls -al built/packaged/"
+          ###### End of Repository/Build Configurations ######
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v0.0.1-preview
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_OCEAN_091127303 }}
+          action: "close"

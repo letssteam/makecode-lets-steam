@@ -77,5 +77,8 @@
         "typeinfo": "cpp"
     },
     "editor.formatOnSave": true,
-    "files.autoSave": "onFocusChange"
+    "files.autoSave": "onFocusChange",
+    "staticWebApps.appSubpath": "/",
+    "staticWebApps.apiSubpath": "",
+    "staticWebApps.outputSubpath": "pxt-lets-steam/built/packaged/"
 }
