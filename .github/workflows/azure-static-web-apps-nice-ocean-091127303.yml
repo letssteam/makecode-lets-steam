@@ -18,7 +18,7 @@ jobs:
       matrix:
         node-version: [14.x]
     container:
-      image: nedseb/arm-gcc-none-eabi:latest
+      image: letssteam/makecode-toolchain:latest
       options: --user 1001 --security-opt no-new-privileges
     steps:
       - uses: actions/cache@v2

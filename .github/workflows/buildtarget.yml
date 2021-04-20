@@ -2,7 +2,7 @@ name: buildtarget
 
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
       matrix:
         node-version: [10.x]
     container:
-      image: nedseb/arm-gcc-none-eabi:latest
+      image: letssteam/makecode-toolchain:latest
       options: --user 1001 --security-opt no-new-privileges
     steps:
       - uses: actions/cache@v2
@@ -29,13 +29,13 @@ jobs:
       - run: npm install -g pxt
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }} 
-          submodules: 'recursive' 
+          token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
+          submodules: "recursive"
       - run: scripts/setup.sh
       - run: cd pxt-lets-steam;pxt ci
         env:
-          PXT_FORCE_LOCAL: 1 
-          PXT_NODOCKER : 1
+          PXT_FORCE_LOCAL: 1
+          PXT_NODOCKER: 1
           CROWDIN_KEY: ${{ secrets.CROWDIN_KEY }}
           PXT_ACCESS_TOKEN: ${{ secrets.PXT_ACCESS_TOKEN }}
           PXT_RELEASE_REPO: ${{ secrets.PXT_RELEASE_REPO }}
