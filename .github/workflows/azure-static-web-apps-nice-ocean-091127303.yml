@@ -21,13 +21,6 @@ jobs:
       image: letssteam/makecode-toolchain:latest
       options: --user 1001 --security-opt no-new-privileges
     steps:
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2-beta
         with:
@@ -39,20 +32,11 @@ jobs:
         with:
           submodules: true
 
-      - uses: actions/cache@v2
-        with:
-          path: |
-            ${{ github.workspace }}/pxt-lets-steam/libs/blocksprj/built
-            ${{ github.workspace }}/pxt-lets-steam/libs/stm32-discovery-DISCO_L475VG_IOT/built
-            ${{ github.workspace }}/pxt-lets-steam/libs/stm32-nucleo64-NUCLEO_F4x1RE/built
-            ${{ github.workspace }}/pxt-lets-steam/libs/stm32-nucleo64-PNUCLEO_WB55RG/built
-          key: ${{ runner.os }}-codal-${{ hashFiles('**/target-locked.json') }}
-
       - run: scripts/setup.sh && scripts/build.sh && scripts/package.sh
 
       - name: Build And Deploy
         id: builddeploy
-        uses: Azure/static-web-apps-deploy@v0.0.1-preview
+        uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_OCEAN_091127303 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
