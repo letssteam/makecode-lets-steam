@@ -1,26 +1,26 @@
 {
-    "name": "make-code-letssteam",
-    "private": "true",
-    "description": "Let's STEAM Project's Makecode Target",
-    "version": "0.0.1",
-    "author": "letssteam",
-    "license": "MIT",
-    "scripts": {
-        "setup": "git submodule update --init --recursive && git pull && scripts/setup.sh",
-        "serve": "scripts/serve.sh",
-        "build": "scripts/build.sh",
-        "staticpackage": "scripts/package.sh",
-        "staticserve": "http-server -c-1 pxt-lets-steam/built/packaged",
-        "clean": "scripts/clean.sh"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/letssteam/makecode-lets-steam"
-    },
-    "bugs": {
-        "url": "https://github.com/letssteam/makecode-lets-steam/issues"
-    },
-    "dependencies": {
-        "pxt": "^0.5.1"
-    }
+  "name": "make-code-letssteam",
+  "private": "true",
+  "description": "Let's STEAM Project's Makecode Target",
+  "version": "0.0.1",
+  "author": "letssteam",
+  "license": "MIT",
+  "scripts": {
+    "setup": "scripts/setup.sh",
+    "serve": "scripts/serve.sh",
+    "build": "yarn setup && scripts/build.sh",
+    "staticpackage": "scripts/package.sh",
+    "staticserve": "http-server -c-1 pxt-lets-steam/built/packaged",
+    "clean": "scripts/clean.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/letssteam/makecode-lets-steam"
+  },
+  "bugs": {
+    "url": "https://github.com/letssteam/makecode-lets-steam/issues"
+  },
+  "dependencies": {
+    "pxt": "^0.5.1"
+  }
 }
