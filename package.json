@@ -19,5 +19,8 @@
     },
     "bugs": {
         "url": "https://github.com/letssteam/makecode-lets-steam/issues"
+    },
+    "dependencies": {
+        "pxt": "^0.5.1"
     }
 }
