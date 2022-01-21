@@ -23,6 +23,13 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
   update-alternatives --install /usr/bin/pydoc pydoc /usr/bin/pydoc3 1 && \
   apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
+# Install Github CLI
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null && \
+  sudo apt update && \
+  sudo apt install gh && \
+  apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
 # Install the last GCC from ARM
 ENV ARM_GCC_VERSION 10-2020-q4-major
 ENV ARM_GCC_PATH 10-2020q4
@@ -43,7 +50,7 @@ RUN mkdir /arm_gcc && \
 ENV PATH="${ARM_GCC_INSTALL_FOLDER}/bin:${PATH}"
 
 # make some useful symlinks that are expected to exist
-RUN cd /usr/bin                                                                            && \
+RUN cd /usr/bin                                                                          && \
   ln -s /arm_gcc/gcc-arm-none-eabi-${ARM_GCC_VERSION}/bin/arm-none-eabi-addr2line        && \            
   ln -s /arm_gcc/gcc-arm-none-eabi-${ARM_GCC_VERSION}/bin/arm-none-eabi-ar               && \            
   ln -s /arm_gcc/gcc-arm-none-eabi-${ARM_GCC_VERSION}/bin/arm-none-eabi-as               && \            
