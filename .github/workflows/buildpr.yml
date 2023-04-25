@@ -5,11 +5,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/cache@v2
@@ -18,7 +18,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Install dependencies  
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libusb-dev libusb-1.0 libudev-dev
@@ -29,12 +29,11 @@ jobs:
       - run: npm install -g pxt
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }} 
-          submodules: 'recursive' 
+          token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
+          submodules: "recursive"
       - run: scripts/setup.sh
       - run: cd pxt-lets-steam;pxt ci
         env:
           CHROME_BIN: chromium-browser
           DISPLAY: :99.0
           CI: true
-
