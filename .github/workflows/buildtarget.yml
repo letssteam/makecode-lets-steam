@@ -23,11 +23,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g pxt
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
           submodules: "recursive"
