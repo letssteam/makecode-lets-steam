@@ -1,9 +1,9 @@
 [submodule "pxt"]
 	path = pxt
-	url = https://github.com/microsoft/pxt.git
+	url = https://github.com/letssteam/pxt.git
 [submodule "pxt-common-packages"]
 	path = pxt-common-packages
-	url = https://github.com/microsoft/pxt-common-packages.git
+	url = https://github.com/letssteam/pxt-common-packages.git
 [submodule "pxt-lets-steam"]
 	path = pxt-lets-steam
 	url = https://github.com/letssteam/pxt-lets-steam
