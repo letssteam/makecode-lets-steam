@@ -18,7 +18,9 @@
     "PXT_RUNTIME_DEV": "1"
   },
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts/fermium"
+    },
     "ghcr.io/devcontainers-contrib/features/typescript:2": {},
 
     // Install common utilities
