@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Package into static website and test locally. See https://makecode.com/cli/staticpkg
 
 package() {

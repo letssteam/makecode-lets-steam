@@ -1,10 +1,22 @@
-#!/usr/bin/env bash
-cd pxt-lets-steam
-npm install
+#!/usr/bin/env sh
 
-rm -R node_modules/pxt-core
-rm -R node_modules/pxt-common-packages
+link(){
+    cd pxt-lets-steam
 
-pxt link ../pxt
-pxt link ../pxt-common-packages
-cd
+    if [ -d "node_modules/pxt-core" ]
+    then
+        rm -R "node_modules/pxt-core"
+        pxt link ../pxt
+
+    fi
+
+    if [ -d "node_modules/pxt-common-packages" ]
+    then
+        rm -R "node_modules/pxt-common-packages"
+        pxt link ../pxt-common-packages
+    fi
+
+    cd ..
+}
+
+link

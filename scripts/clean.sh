@@ -1,4 +1,7 @@
-#!/usr/bin/env bash
-cd pxt-lets-steam
-pxt clean
-cd ..
+#!/usr/bin/env sh
+clean(){
+    cd pxt-lets-steam
+    pxt clean
+    cd ..
+}
+clean
