@@ -12,7 +12,7 @@ projects/
 packaged
 gh-pages
 package-lock.json
-
+yarn.lock
 
 videos/**
 *.user
