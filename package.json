@@ -19,10 +19,6 @@
   "bugs": {
     "url": "https://github.com/letssteam/makecode-lets-steam/issues"
   },
-  "engines": {
-    "node": "14.x",
-    "yarn": "^1.22.x"
-  },
   "dependencies": {
     "pxt": "^0.5.1"
   }
