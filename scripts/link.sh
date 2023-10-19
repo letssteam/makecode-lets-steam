@@ -1,17 +1,15 @@
 #!/usr/bin/env sh
 
-link(){
-    cd pxt-lets-steam
+link() {
+    cd pxt-lets-steam || exit
 
-    if [ -d "node_modules/pxt-core" ]
-    then
+    if [ -d "node_modules/pxt-core" ]; then
         rm -R "node_modules/pxt-core"
         pxt link ../pxt
 
     fi
 
-    if [ -d "node_modules/pxt-common-packages" ]
-    then
+    if [ -d "node_modules/pxt-common-packages" ]; then
         rm -R "node_modules/pxt-common-packages"
         pxt link ../pxt-common-packages
     fi

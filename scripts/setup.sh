@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+
 scripts/install-pxt.sh
 scripts/install-pxt-common-packages.sh
 scripts/install-pxt-lets-steam.sh

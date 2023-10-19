@@ -4,8 +4,9 @@
 package() {
     # Package and test locally
     # cd ../pxt; npm run build
-    cd pxt-lets-steam
+    cd pxt-lets-steam || exit
     pxt staticpkg
     cd ..
 }
+
 package

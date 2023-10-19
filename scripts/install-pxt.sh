@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-install_pxt(){
-    cd pxt
+install_pxt() {
+    cd pxt || exit
     npm install
     npm run build
     cd ..
