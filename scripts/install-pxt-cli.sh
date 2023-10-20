@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 
 install_pxt_cli(){
-    # Install pxt
-    npm install -g pxt
+    if ! [ -x "$(command -v pxt)" ]
+    then
+        # Install pxt
+        npm install -g pxt
+    fi 
 }
 
 install_pxt_cli
